@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Joyería Artesanal</title>
+<title>AZ Jewelry — Joyería Privada</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <style>
@@ -26,6 +26,30 @@ body{
   font-family:'Cormorant Garamond',serif;
   font-weight:300;
   overflow-x:hidden;
+}
+
+/* BORDADOS LATERALES */
+.side-border {
+  position:fixed;
+  top:0;bottom:0;
+  width:28px;
+  z-index:50;
+  pointer-events:none;
+  display:flex;
+  align-items:stretch;
+}
+.side-border.left  { left:0; }
+.side-border.right { right:0; transform:scaleX(-1); }
+
+.side-border svg {
+  width:28px;
+  height:100%;
+  display:block;
+}
+
+@media(max-width:640px){
+  .side-border { width:16px; }
+  .side-border svg { width:16px; }
 }
 
 /* HERO */
@@ -246,25 +270,71 @@ footer{
 </head>
 <body>
 
+<!-- BORDADO LATERAL IZQUIERDO -->
+<div class="side-border left">
+  <svg viewBox="0 0 28 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="bordado-l" x="0" y="0" width="28" height="80" patternUnits="userSpaceOnUse">
+        <!-- Línea central vertical -->
+        <line x1="14" y1="0" x2="14" y2="80" stroke="#7a5c1e" stroke-width="0.6" opacity="0.5"/>
+        <!-- Onda sinuosa -->
+        <path d="M14,0 Q22,10 14,20 Q6,30 14,40 Q22,50 14,60 Q6,70 14,80" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.6"/>
+        <!-- Rombos decorativos cada 80px -->
+        <path d="M14,20 L19,25 L14,30 L9,25 Z" stroke="#c9a84c" stroke-width="0.6" fill="none" opacity="0.7"/>
+        <!-- Puntos en cruces -->
+        <circle cx="14" cy="0"  r="1.2" fill="#c9a84c" opacity="0.4"/>
+        <circle cx="14" cy="40" r="1.5" fill="#c9a84c" opacity="0.5"/>
+        <circle cx="14" cy="80" r="1.2" fill="#c9a84c" opacity="0.4"/>
+        <!-- Pequeñas cruces -->
+        <line x1="11" y1="60" x2="17" y2="60" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
+        <line x1="14" y1="57" x2="14" y2="63" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
+        <!-- Ticks laterales -->
+        <line x1="14" y1="10" x2="20" y2="10" stroke="#7a5c1e" stroke-width="0.5" opacity="0.5"/>
+        <line x1="14" y1="50" x2="20" y2="50" stroke="#7a5c1e" stroke-width="0.5" opacity="0.5"/>
+        <line x1="14" y1="70" x2="20" y2="70" stroke="#7a5c1e" stroke-width="0.5" opacity="0.5"/>
+      </pattern>
+    </defs>
+    <rect width="28" height="100%" fill="url(#bordado-l)"/>
+  </svg>
+</div>
+
+<!-- BORDADO LATERAL DERECHO -->
+<div class="side-border right">
+  <svg viewBox="0 0 28 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="bordado-r" x="0" y="0" width="28" height="80" patternUnits="userSpaceOnUse">
+        <line x1="14" y1="0" x2="14" y2="80" stroke="#7a5c1e" stroke-width="0.6" opacity="0.5"/>
+        <path d="M14,0 Q22,10 14,20 Q6,30 14,40 Q22,50 14,60 Q6,70 14,80" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.6"/>
+        <path d="M14,20 L19,25 L14,30 L9,25 Z" stroke="#c9a84c" stroke-width="0.6" fill="none" opacity="0.7"/>
+        <circle cx="14" cy="0"  r="1.2" fill="#c9a84c" opacity="0.4"/>
+        <circle cx="14" cy="40" r="1.5" fill="#c9a84c" opacity="0.5"/>
+        <circle cx="14" cy="80" r="1.2" fill="#c9a84c" opacity="0.4"/>
+        <line x1="11" y1="60" x2="17" y2="60" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
+        <line x1="14" y1="57" x2="14" y2="63" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
+        <line x1="14" y1="10" x2="20" y2="10" stroke="#7a5c1e" stroke-width="0.5" opacity="0.5"/>
+        <line x1="14" y1="50" x2="20" y2="50" stroke="#7a5c1e" stroke-width="0.5" opacity="0.5"/>
+        <line x1="14" y1="70" x2="20" y2="70" stroke="#7a5c1e" stroke-width="0.5" opacity="0.5"/>
+      </pattern>
+    </defs>
+    <rect width="28" height="100%" fill="url(#bordado-r)"/>
+  </svg>
+</div>
+
 <section class="hero">
   <div class="corner c-tl"></div>
   <div class="corner c-tr"></div>
   <div class="corner c-bl"></div>
   <div class="corner c-br"></div>
   <div class="hero-inner">
-    <!-- EDITA: Tu nombre -->
-    <h1 class="hero-brand">Tu Nombre</h1>
-    <!-- EDITA: Subtítulo -->
-    <p class="hero-tagline">Joyería Artesanal · Hecha a Mano</p>
-    <!-- EDITA: Tu manifiesto -->
+    <h1 class="hero-brand">AZJewelry</h1>
+    <p class="hero-tagline">Joyería Privada · Hecha a Mano</p>
     <p class="hero-desc">
-      Cada pieza que creo nace de mis manos y de mi criterio.<br>
-      <strong>Sin diamantes de sangre.</strong> Sin metales tóxicos.<br>
-      Sin plomo, sin níquel, sin nada que te dañe.<br>
-      Lo que prometo es lo que recibes —<br>
-      <strong>materiales reales, calidad de artesano,</strong><br>
-      cero sand casting, cero producción en masa.<br>
-      Solo trabajo honesto, pieza por pieza.
+      Gemas de alta calidad, tanto <strong>lab grown</strong> como naturales.<br>
+      No se trabajan <strong>diamantes de sangre</strong> ni metales tóxicos.<br>
+      Materiales reales de <strong>máxima calidad y pureza.</strong><br>
+      No se realiza sand casting ni producción en masa.<br>
+      Cada pieza es única —<br>
+      trabajo honesto, pieza a pieza.
     </p>
   </div>
 </section>
@@ -357,34 +427,27 @@ footer{
   <div class="footer-grid">
 
     <div>
-      <div class="footer-brand">Tu Nombre</div>
+      <div class="footer-brand">AZJewelry</div>
       <p style="font-size:13px;font-style:italic;color:var(--muted);line-height:1.8;margin-top:8px;">
-        Artesano independiente.<br>Cada pieza, única e irrepetible.
+        AsBe — Joyero Privado.<br>Cada pieza, única e irrepetible.
       </p>
     </div>
 
     <div>
       <div class="footer-label">Contacto</div>
-      <!-- EDITA -->
-      <a href="tel:+56900000000" class="footer-link">+56 9 0000 0000</a>
-      <a href="mailto:tucorreo@email.com" class="footer-link">tucorreo@email.com</a>
-      <a href="https://wa.me/56900000000" class="footer-link" target="_blank">WhatsApp</a>
+      <a href="mailto:sebastian.diaz.original@gmail.com" class="footer-link">sebastian.diaz.original@gmail.com</a>
     </div>
 
     <div>
-      <div class="footer-label">Apoya mi trabajo</div>
-      <!-- EDITA: Cambia el href por tu link de pago -->
-      <a href="https://paypal.me/tuusuario" class="support-btn" target="_blank">
-        <span>✦ Apoyar</span>
-      </a>
-      <p class="support-note">
-        Si mi trabajo te inspira o quieres apoyar a un artesano independiente, cada gesto es bienvenido y honestamente agradecido.
+      <div class="footer-label">Encargos</div>
+      <p style="font-size:13px;font-style:italic;color:var(--muted);line-height:1.8;margin-top:4px;">
+        Piezas bajo pedido.<br>Consultas exclusivamente<br>por correo electrónico.
       </p>
     </div>
 
   </div>
   <div class="footer-copy">
-    Joyería artesanal · Hecho a mano · Todos los derechos reservados
+    AZJewelry · Joyería Privada · Calidad Hecha a Mano
   </div>
 </footer>
 
