@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joyería Artesanal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #080808;
+  --deep:  #0c0c0c;
+  --gold:  #c9a84c;
+  --gold2: #e2c97e;
+  --gold3: #7a5c1e;
+  --gold4: #f5e6b8;
+  --cream: #f0e8d8;
+  --muted: #7a7060;
+  --faint: #2a2820;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--black);
+  color:var(--cream);
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:60px 24px 80px;
+  position:relative;
+}
+.corner{position:absolute;width:50px;height:50px;border-color:var(--gold3);border-style:solid;}
+.c-tl{top:36px;left:36px;border-width:1px 0 0 1px;}
+.c-tr{top:36px;right:36px;border-width:1px 1px 0 0;}
+.c-bl{bottom:36px;left:36px;border-width:0 0 1px 1px;}
+.c-br{bottom:36px;right:36px;border-width:0 1px 1px 0;}
+
+.hero-inner{position:relative;max-width:820px;width:100%;padding:20px;}
+
+.hero-brand{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,7.5vw,86px);
+  font-weight:900;
+  line-height:1.05;
+  letter-spacing:0.08em;
+  color: var(--black);
+  -webkit-text-stroke: 2px var(--gold);
+  text-stroke: 2px var(--gold);
+  paint-order: stroke fill;
+  filter:drop-shadow(0 0 28px rgba(201,168,76,0.18)) drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+  opacity:0;
+  animation:fadeUp 1.2s 0.2s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+.hero-tagline{
+  font-family:'Cinzel',serif;
+  font-size:clamp(8px,1.4vw,11px);
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:var(--gold3);
+  margin:18px 0 40px;
+  opacity:0;
+  animation:fadeUp 1.2s 0.45s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+.hero-desc{
+  font-size:clamp(16px,2.2vw,21px);
+  font-weight:400;
+  font-style:italic;
+  color:var(--cream);
+  line-height:2.1;
+  max-width:640px;
+  margin:0 auto;
+  letter-spacing:0.02em;
+  opacity:0;
+  animation:fadeUp 1.2s 0.65s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-desc strong{font-style:normal;font-weight:600;color:var(--gold2);letter-spacing:0.04em;}
+
+/* ORNAMENTO */
+.ornament{
+  display:flex;align-items:center;justify-content:center;
+  margin:70px auto 70px;
+  max-width:640px;padding:0 32px;
+  opacity:0;
+  animation:fadeUp 1.2s 0.85s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.orn-line{
+  flex:1;height:1px;
+  background:linear-gradient(to right,transparent,var(--gold3),var(--gold),var(--gold3),transparent);
+}
+.orn-center{padding:0 20px;}
+.orn-svg{width:90px;height:28px;overflow:visible;}
+
+/* GALERÍA */
+.gallery{padding:0 24px 100px;max-width:1300px;margin:0 auto;}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:80px;
+  gap:3px;
+}
+.piece:nth-child(1){grid-column:1/6; grid-row:1/6;}
+.piece:nth-child(2){grid-column:6/9; grid-row:1/4;}
+.piece:nth-child(3){grid-column:9/13;grid-row:1/5;}
+.piece:nth-child(4){grid-column:6/10;grid-row:4/8;}
+.piece:nth-child(5){grid-column:10/13;grid-row:5/8;}
+.piece:nth-child(6){grid-column:1/5; grid-row:6/10;}
+.piece:nth-child(7){grid-column:5/9; grid-row:8/12;}
+.piece:nth-child(8){grid-column:9/13;grid-row:8/12;}
+
+@media(max-width:768px){
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:200px;}
+  .piece:nth-child(n){grid-column:auto;grid-row:auto;}
+  .piece:nth-child(1),.piece:nth-child(5){grid-column:1/3;}
+}
+
+.piece{
+  position:relative;overflow:hidden;
+  background:var(--deep);
+  border:1px solid var(--gold3);
+  cursor:pointer;
+  opacity:0;transform:translateY(16px);
+  animation:fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.piece:nth-child(1){animation-delay:0.1s;}
+.piece:nth-child(2){animation-delay:0.2s;}
+.piece:nth-child(3){animation-delay:0.3s;}
+.piece:nth-child(4){animation-delay:0.4s;}
+.piece:nth-child(5){animation-delay:0.5s;}
+.piece:nth-child(6){animation-delay:0.6s;}
+.piece:nth-child(7){animation-delay:0.7s;}
+.piece:nth-child(8){animation-delay:0.8s;}
+
+.piece::before{
+  content:'';position:absolute;inset:0;
+  border:1.5px solid var(--gold);
+  opacity:0;transition:opacity 0.4s;z-index:2;pointer-events:none;
+}
+.piece:hover::before{opacity:1;}
+.piece::after{
+  content:'';position:absolute;inset:6px;
+  border:1px solid rgba(201,168,76,0.1);
+  pointer-events:none;z-index:2;transition:border-color 0.4s;
+}
+.piece:hover::after{border-color:rgba(201,168,76,0.3);}
+
+.piece img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:brightness(0.88) saturate(0.82);
+  transition:transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94),filter 0.5s;
+}
+.piece:hover img{transform:scale(1.05);filter:brightness(1) saturate(1);}
+
+.piece-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,8,8,0.7) 0%,transparent 55%);
+  opacity:0;transition:opacity 0.4s;z-index:1;
+  display:flex;align-items:flex-end;padding:14px;
+}
+.piece:hover .piece-overlay{opacity:1;}
+.piece-name{
+  font-family:'Cinzel',serif;font-size:10px;
+  letter-spacing:2.5px;text-transform:uppercase;color:var(--gold2);
+}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--faint);
+  padding:60px 32px 50px;
+  max-width:1300px;margin:0 auto;
+}
+.footer-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:40px;width:100%;align-items:start;
+}
+@media(max-width:640px){.footer-grid{grid-template-columns:1fr;gap:32px;}}
+
+.footer-brand{
+  font-family:'Playfair Display',serif;font-size:16px;font-weight:900;
+  color: var(--black);
+  -webkit-text-stroke: 1.2px var(--gold);
+  text-stroke: 1.2px var(--gold);
+  paint-order: stroke fill;
+  margin-bottom:12px;
+  letter-spacing:0.06em;
+}
+.footer-label{
+  font-family:'Cinzel',serif;font-size:9px;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold3);margin-bottom:16px;
+}
+.footer-link{
+  display:block;font-size:14px;color:var(--muted);
+  text-decoration:none;margin-bottom:10px;
+  transition:color 0.25s;font-style:italic;
+}
+.footer-link:hover{color:var(--gold2);}
+
+.support-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--gold3);color:var(--gold2);
+  font-family:'Cinzel',serif;font-size:10px;
+  letter-spacing:2.5px;text-transform:uppercase;
+  text-decoration:none;padding:14px 24px;
+  transition:all 0.35s;position:relative;overflow:hidden;margin-top:4px;
+}
+.support-btn::before{
+  content:'';position:absolute;inset:0;
+  background:var(--gold3);
+  transform:translateX(-100%);
+  transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.support-btn:hover::before{transform:translateX(0);}
+.support-btn:hover{color:var(--black);border-color:var(--gold);}
+.support-btn span{position:relative;z-index:1;}
+
+.support-note{
+  font-size:12px;font-style:italic;
+  color:var(--muted);margin-top:12px;line-height:1.7;
+}
+.footer-copy{
+  width:100%;border-top:1px solid var(--faint);
+  margin-top:48px;padding-top:24px;
+  font-family:'Cinzel',serif;font-size:9px;
+  letter-spacing:2px;color:var(--faint);
+  text-transform:uppercase;text-align:center;
+}
+
+/* ANIMACIONES */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="corner c-tl"></div>
+  <div class="corner c-tr"></div>
+  <div class="corner c-bl"></div>
+  <div class="corner c-br"></div>
+  <div class="hero-inner">
+    <!-- EDITA: Tu nombre -->
+    <h1 class="hero-brand">Tu Nombre</h1>
+    <!-- EDITA: Subtítulo -->
+    <p class="hero-tagline">Joyería Artesanal · Hecha a Mano</p>
+    <!-- EDITA: Tu manifiesto -->
+    <p class="hero-desc">
+      Cada pieza que creo nace de mis manos y de mi criterio.<br>
+      <strong>Sin diamantes de sangre.</strong> Sin metales tóxicos.<br>
+      Sin plomo, sin níquel, sin nada que te dañe.<br>
+      Lo que prometo es lo que recibes —<br>
+      <strong>materiales reales, calidad de artesano,</strong><br>
+      cero sand casting, cero producción en masa.<br>
+      Solo trabajo honesto, pieza por pieza.
+    </p>
+  </div>
+</section>
+
+<!-- SEPARADOR ORNAMENTAL -->
+<div class="ornament reveal">
+  <div class="orn-line"></div>
+  <div class="orn-center">
+    <svg class="orn-svg" viewBox="0 0 260 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:200px;height:40px;overflow:visible;">
+      <!-- Líneas base -->
+      <line x1="0" y1="20" x2="40" y2="20" stroke="#c9a84c" stroke-width="0.7" opacity="0.6"/>
+      <line x1="220" y1="20" x2="260" y2="20" stroke="#c9a84c" stroke-width="0.7" opacity="0.6"/>
+      <!-- Ondas sinuosas tipo bordado izquierda -->
+      <path d="M40,20 Q50,8 60,20 Q70,32 80,20 Q90,8 100,20 Q110,32 120,20" stroke="#c9a84c" stroke-width="0.9" fill="none"/>
+      <!-- Ondas sinuosas tipo bordado derecha -->
+      <path d="M140,20 Q150,8 160,20 Q170,32 180,20 Q190,8 200,20 Q210,32 220,20" stroke="#c9a84c" stroke-width="0.9" fill="none"/>
+      <!-- Puntos decorativos sobre ondas -->
+      <circle cx="60" cy="20" r="1.8" fill="#c9a84c" opacity="0.7"/>
+      <circle cx="80" cy="20" r="1.8" fill="#c9a84c" opacity="0.7"/>
+      <circle cx="100" cy="20" r="1.8" fill="#c9a84c" opacity="0.7"/>
+      <circle cx="160" cy="20" r="1.8" fill="#c9a84c" opacity="0.7"/>
+      <circle cx="180" cy="20" r="1.8" fill="#c9a84c" opacity="0.7"/>
+      <circle cx="200" cy="20" r="1.8" fill="#c9a84c" opacity="0.7"/>
+      <!-- Diamante central -->
+      <path d="M130,7 L137,20 L130,33 L123,20 Z" stroke="#c9a84c" stroke-width="0.9" fill="none"/>
+      <path d="M130,12 L134,20 L130,28 L126,20 Z" stroke="#c9a84c" stroke-width="0.6" fill="none" opacity="0.5"/>
+      <circle cx="130" cy="20" r="2" fill="#c9a84c"/>
+      <!-- Cruces decorativas -->
+      <line x1="50" y1="14" x2="50" y2="10" stroke="#c9a84c" stroke-width="0.6" opacity="0.5"/>
+      <line x1="47" y1="12" x2="53" y2="12" stroke="#c9a84c" stroke-width="0.6" opacity="0.5"/>
+      <line x1="210" y1="14" x2="210" y2="10" stroke="#c9a84c" stroke-width="0.6" opacity="0.5"/>
+      <line x1="207" y1="12" x2="213" y2="12" stroke="#c9a84c" stroke-width="0.6" opacity="0.5"/>
+      <!-- Pequeños rombos en los extremos de las ondas -->
+      <path d="M120,20 L124,16 L128,20 L124,24 Z" stroke="#c9a84c" stroke-width="0.7" fill="none"/>
+      <path d="M140,20 L136,16 L132,20 L136,24 Z" stroke="#c9a84c" stroke-width="0.7" fill="none"/>
+    </svg>
+  </div>
+  <div class="orn-line"></div>
+</div>
+
+<!-- GALERÍA — Reemplaza cada src con tu URL de imagen -->
+<section class="gallery">
+  <div class="gallery-grid">
+
+    <div class="piece" data-name="Pieza I">
+      <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=800&q=85" alt="Pieza I">
+      <div class="piece-overlay"><span class="piece-name">Pieza I</span></div>
+    </div>
+
+    <div class="piece" data-name="Pieza II">
+      <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=85" alt="Pieza II">
+      <div class="piece-overlay"><span class="piece-name">Pieza II</span></div>
+    </div>
+
+    <div class="piece" data-name="Pieza III">
+      <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=85" alt="Pieza III">
+      <div class="piece-overlay"><span class="piece-name">Pieza III</span></div>
+    </div>
+
+    <div class="piece" data-name="Pieza IV">
+      <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=85" alt="Pieza IV">
+      <div class="piece-overlay"><span class="piece-name">Pieza IV</span></div>
+    </div>
+
+    <div class="piece" data-name="Pieza V">
+      <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=85" alt="Pieza V">
+      <div class="piece-overlay"><span class="piece-name">Pieza V</span></div>
+    </div>
+
+    <div class="piece" data-name="Pieza VI">
+      <img src="https://images.unsplash.com/photo-1573408301185-9519f94f1200?w=800&q=85" alt="Pieza VI">
+      <div class="piece-overlay"><span class="piece-name">Pieza VI</span></div>
+    </div>
+
+    <div class="piece" data-name="Pieza VII">
+      <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=85" alt="Pieza VII">
+      <div class="piece-overlay"><span class="piece-name">Pieza VII</span></div>
+    </div>
+
+    <div class="piece" data-name="Pieza VIII">
+      <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=85" alt="Pieza VIII">
+      <div class="piece-overlay"><span class="piece-name">Pieza VIII</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="reveal">
+  <div class="footer-grid">
+
+    <div>
+      <div class="footer-brand">Tu Nombre</div>
+      <p style="font-size:13px;font-style:italic;color:var(--muted);line-height:1.8;margin-top:8px;">
+        Artesano independiente.<br>Cada pieza, única e irrepetible.
+      </p>
+    </div>
+
+    <div>
+      <div class="footer-label">Contacto</div>
+      <!-- EDITA -->
+      <a href="tel:+56900000000" class="footer-link">+56 9 0000 0000</a>
+      <a href="mailto:tucorreo@email.com" class="footer-link">tucorreo@email.com</a>
+      <a href="https://wa.me/56900000000" class="footer-link" target="_blank">WhatsApp</a>
+    </div>
+
+    <div>
+      <div class="footer-label">Apoya mi trabajo</div>
+      <!-- EDITA: Cambia el href por tu link de pago -->
+      <a href="https://paypal.me/tuusuario" class="support-btn" target="_blank">
+        <span>✦ Apoyar</span>
+      </a>
+      <p class="support-note">
+        Si mi trabajo te inspira o quieres apoyar a un artesano independiente, cada gesto es bienvenido y honestamente agradecido.
+      </p>
+    </div>
+
+  </div>
+  <div class="footer-copy">
+    Joyería artesanal · Hecho a mano · Todos los derechos reservados
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
